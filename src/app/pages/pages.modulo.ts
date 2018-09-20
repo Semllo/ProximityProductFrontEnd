@@ -23,6 +23,12 @@ import { PromesasComponent } from './promesas/promesas.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
+import { CriticasComponent } from './criticas/criticas.component';
+import { ListasdeseosComponent } from './listasdeseos/listasdeseos.component';
+import { ProductosComponent } from './productos/productos.component';
+import { ProductoComponent } from './productos/producto.component';
+import { CategoriasComponent } from './categorias/categorias.component';
+
 
 
 
@@ -38,7 +44,12 @@ import { ModalUploadComponent } from '../components/modal-upload/modal-upload.co
             PromesasComponent,
             ProfileComponent,
             UsuariosComponent,
-            ModalUploadComponent
+            ModalUploadComponent,
+            CriticasComponent,
+            ListasdeseosComponent,
+            ProductosComponent,
+            ProductoComponent,
+            CategoriasComponent
         ],
         exports: [
             DashboardComponent,

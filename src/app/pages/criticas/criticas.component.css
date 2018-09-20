@@ -1,0 +1,62 @@
+@media screen and (min-width: 600px) {
+    .tarjeta {
+        max-width: 1200px;
+        max-height: 300px;
+    }
+    textarea {
+        max-width: 800px;
+        max-height: 150px;
+    }
+    img {
+        max-width: 200px;
+        max-height: 150px;
+    }
+    .principal {
+        padding-top: 5px;
+        padding-right: 40px;
+        padding-bottom: 1px;
+        padding-left: 80px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .tarjeta {
+        max-width: 1200px;
+        max-height: 500px;
+    }
+    textarea {
+        max-width: 800px;
+        max-height: 250px;
+    }
+    img {
+        max-width: 200px;
+        max-height: 250px;
+    }
+    .principal {
+        padding-top: 5px;
+        padding-right: 10px;
+        padding-bottom: 1px;
+        padding-left: 20px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .tarjeta {
+        max-width: 1200px;
+        max-height: 800px;
+    }
+    textarea {
+        max-width: 800px;
+        max-height: 350px;
+    }
+    img {
+        max-width: 400px;
+        max-height: 350px;
+    }
+    .principal {
+        padding-top: 5px;
+        padding-right: 10px;
+        padding-bottom: 1px;
+        padding-left: 20px;
+    }
+}

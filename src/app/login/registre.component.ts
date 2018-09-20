@@ -50,6 +50,10 @@ export class RegistreComponent implements OnInit {
     correo: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, Validators.required),
     password2: new FormControl(null, Validators.required),
+    edad: new FormControl(null, Validators.required),
+    genero: new FormControl(null, Validators.required),
+    pais: new FormControl(null, Validators.required),
+    ciudad: new FormControl(null, Validators.required),
     condiciones: new FormControl(false),
   }, { validators: this.sonIguales('password' , 'password2') }
 
@@ -58,9 +62,13 @@ export class RegistreComponent implements OnInit {
   this.forma.setValue({
 
   nombre: 'TEST',
-  correo: 'test@test.com',
+  correo: 'test10@test.com',
   password: '123456',
   password2: '123456',
+  edad: '06-05-1994',
+  genero: 'Femenino',
+  pais:  'Es',
+  ciudad: 'Al',
   condiciones: true
 
   });
@@ -69,6 +77,9 @@ export class RegistreComponent implements OnInit {
   }
 
 registrarUsuario() {
+
+
+  let array: String;
 
   if ( this.forma.invalid ) {
   console.log('Formulario invalido');
@@ -81,14 +92,30 @@ registrarUsuario() {
     return;
   }
 
+  // this.forma.value.edad = '0' + this.forma.value.edad;
+  // this.forma.value.edad.replace(/-/g, ' ');
+
+  array = this.forma.value.edad.split('-');
+
+  this.forma.value.edad = array[0] + array[1] + array[2];
+
+   console.log( this.forma.value.edad );
+
   const usuario = new Usuario(
     this.forma.value.nombre,
     this.forma.value.correo,
     this.forma.value.password,
+    this.forma.value.edad,
+    this.forma.value.genero,
+    this.forma.value.pais,
+    this.forma.value.ciudad,
   );
 
 
-  this._usuarioService.crearUsuario( usuario ).subscribe( resp => this.router.navigate(['/login']));
+
+    console.log(usuario);
+  // tslint:disable-next-line:max-line-length
+  this._usuarioService.crearUsuario( usuario ).subscribe( (resp => this.router.navigate(['/login'])), ( err => { swal('Acceso denegado', 'Error' , 'error'); }));
 
 }
 }

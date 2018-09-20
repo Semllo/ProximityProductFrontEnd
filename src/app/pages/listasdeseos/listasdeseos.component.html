@@ -1,0 +1,59 @@
+<div class="row animated fadeIn principal">
+
+    <div class="col-sm-12 ">
+        <div class="card tarjeta input-group">
+            <div class="card-body row input-group-prepend">
+                <button (click)="nueva( nuevalista.value )" type="button" id="btnGroupAddon" class="btn btn-themecolor btn btn-block col-2 input-group-text"><i class="fas fa-plus"></i></button>
+                <input #nuevalista class="col-10 form-control" aria-describedby="btnGroupAddon" placeholder="Nombre de la nueva lista">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 ">
+
+        <div class="card tarjeta w3-border cardshadow w3-panel" *ngFor="let deseos of usuario.listasDeDeseos">
+            <div class="card-body row">
+                <div class="col-sm-12">
+                    <h5>Nombre de lista:</h5>
+                </div>
+                <div class="input-group col-sm-10">
+                    <input #nombrelista [ngModel]="deseos.nombre" name="nombre" type="text" class="form-control text-themecolor" placeholder="Nombre de la lista" required>
+                </div>
+
+                <div class="col-sm-1">
+                    <button type="button" (click)="guardar( nombrelista.value, deseos._id )" class="btn btn-dark btn-block"> 
+                        <i class="fa fa-save"></i>
+                    </button>
+                </div>
+
+                <div class="col-sm-1">
+                    <button class="btn btn-danger btn-block" (click)="borrar( deseos._id )"> 
+                     <i class="fa fa-trash-o"></i>
+                    </button>
+                </div>
+
+                <div class="col-sm-12">
+                    <h5>Deseos:</h5>
+                </div>
+                <form #f="ngForm" class="col-sm-12" (ngSubmit)="borrarProducto( f.value, deseos )" novalidate>
+                    <div class="row">
+
+                        <div class="col-sm-11 form-group input-group">
+                            <select class="form-control" name="deseo" name="deseo" [ngModel]="deseos.producto[0].nombre">
+                                 <option *ngFor="let producto of deseos.producto" >{{ producto.nombre }} </option>
+                           </select>
+                        </div>
+
+                        <div class="col-sm-1 form-group">
+                            <button type="submit" class="btn btn-themecolor btn-block">  
+                                 <i class="fa fa-trash-o"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -7,9 +7,14 @@ import { PagesComponent } from './pages.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CriticasComponent } from './criticas/criticas.component';
 
 import { LoginGuardGuard } from '../services/service.index';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { ListasdeseosComponent } from './listasdeseos/listasdeseos.component';
+import { ProductosComponent } from './productos/productos.component';
+import { ProductoComponent } from './productos/producto.component';
+import { CategoriasComponent } from './categorias/categorias.component';
 
 const pagesRoutes: Routes = [
 
@@ -23,9 +28,14 @@ const pagesRoutes: Routes = [
             { path: 'promesas', component: PromesasComponent , data: { titulo: 'Promesas' }  },
             { path: 'account-settings', component: AccountSettingsComponent , data: { titulo: 'Ajustes del tema' }  },
             { path: 'perfil', component: ProfileComponent , data: { titulo: 'Perfil de usuario' }  },
+            { path: 'criticas', component: CriticasComponent , data: { titulo: 'Criticas de usuario' }  },
+            { path: 'deseos', component: ListasdeseosComponent , data: { titulo: 'Mis listas de deseos' }  },
 
             // Mantenimientos
-            { path: 'usuarios', component: UsuariosComponent , data: { titulo: 'Mentenimiento de usuarios' }  },
+            { path: 'usuarios', component: UsuariosComponent , data: { titulo: 'Mantenimiento de usuarios' }  },
+            { path: 'productos', component: ProductosComponent , data: { titulo: 'Mantenimiento de productos' }  },
+            { path: 'categorias', component: CategoriasComponent , data: { titulo: 'Mantenimiento de categorias' }  },
+            { path: 'producto/:id', component: ProductoComponent , data: { titulo: 'Productos' }  },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full'  }
         ]
 

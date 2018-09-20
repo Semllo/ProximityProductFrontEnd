@@ -1,0 +1,42 @@
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="card card-body">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarProducto(f)">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Nombre</label>
+                            <input [ngModel]="producto.nombre" name="nombre" type="text" class="form-control" placeholder="Inserte un nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Precio</label>
+                            <input [ngModel]="producto.precio" name="precio" type="text" class="form-control" placeholder="Inserte el precio">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Descripción</label>
+                            <textarea [ngModel]="producto.descripcion" name="descripcion" placeholder="Inserte una desciprción" name="descripcion" type="text" class="form-control rounded-0" rows="10"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <select [(ngModel)]="producto.subcategoria" name="subcategoria" class="form-control">
+                                        <option class="" [ngValue]="subcategoria" *ngFor="let subcategoria of subcategorias"> {{subcategoria.categoria.nombre}} {{subcategoria.nombre}} </option>
+                            </select>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Guardar</button>
+                        <button type="button" routerLink="/productos" class="btn btn-inverse waves-effect waves-light">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card card-body">
+            <h4> Fotografia </h4>
+            <img (click)="cambiarFoto()" [src]="producto.img | imagen:'producto'" class="img-circle img-fluid pointer">
+        </div>
+    </div>

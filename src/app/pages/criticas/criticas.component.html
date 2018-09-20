@@ -1,0 +1,104 @@
+<div class="row principal animated fadeIn" *ngFor="let criticas of usuario.criticas">
+
+    <div class="col-sm-12 fadeIn principal">
+        <div class="card tarjeta w3-border w3-hover-border-black cardshadow w3-panel fadeIn">
+            <div class="card-body row fadeIn">
+                <form #f="ngForm" (ngSubmit)="guardarCri( f.value, criticas )" class="col-12 fadeIn" novalidate>
+
+                    <div class="card-title col-sm-12">
+                        <div class="input-group">
+                            <input [ngModel]="criticas.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre de la crítica" required>
+                        </div>
+                        <hr noshade="noshade" size="2" width="100%" />
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-sm-2 input-group">
+                            <img class="img-responsive" [src]="criticas.producto.img | imagen" alt="Card image cap">
+                        </div>
+
+                        <div class="col-sm-7 input-group">
+                            <textarea placeholder="criticas" [ngModel]="criticas.descripcion" name="descripcion" type="text" class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10"></textarea>
+                        </div>
+
+                        <div class="row col-sm-3">
+
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-dark btn-block"> 
+                                        <i class="fa fa-save"></i>
+                                </button>
+                            </div>
+
+                            <div class=" col-md-12">
+                                <button class="btn btn-danger btn-block"> 
+                                  <i class="fa fa-trash-o"></i>
+                                </button>
+                            </div>
+
+                            <div class="col-md-12">
+                                <h4 class="text-themecolor">Nota:</h4>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <select class="form-control btn-themecolor" [ngModel]="criticas.nota" name="nota">
+                                            <option  class="btn-themecolor" *ngFor="let nota of notas"> {{nota}} </option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--<div class="card-columns">
+    <div class="card w3-border w3-hover-border-black cardshadow w3-panel" style="border:16px solid rgb(24, 23, 23)" *ngFor="let criticas of usuario.criticas">
+        <img class="card-img-top" [src]="criticas.producto.img | imagen" alt="Card image cap">
+        <form #f="ngForm" (ngSubmit)="guardarCri( f.value, criticas )" novalidate>
+            <div class="card-body border-dark">
+                <hr noshade="noshade" size="2" width="100%" />
+                <div class="input-group">
+                    <input [ngModel]="criticas.nombre" name="nombre" type="text" class="form-control btn-themecolor" placeholder="Ciudad" required>
+                </div>
+                <hr noshade="noshade" size="2" width="100%" />
+
+                <div class="input-group">
+                    <textarea placeholder="criticas" [ngModel]="criticas.descripcion" name="descripcion" type="text" class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10"></textarea>
+                </div>
+
+                <select class="form-control btn-themecolor" [ngModel]="criticas.nota" name="nota">
+                                
+                        <option  class="btn-themecolor" *ngFor="let nota of notas"> {{nota}} </option>
+                    
+                   </select>
+
+            </div>
+            <div class="card-footer bodyfooter">
+                <div class="card-footer bg-transparent bodyfooter">
+
+                    <div class="row">
+
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-dark btn-block"> 
+                            <i class="fa fa-save"></i>
+                        </button>
+                        </div>
+
+                        <div class=" col-6">
+                            <button class="btn btn-danger btn-block"> 
+                          <i class="fa fa-trash-o"></i>
+                        </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>-->

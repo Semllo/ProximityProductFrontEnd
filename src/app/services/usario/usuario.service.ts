@@ -35,12 +35,14 @@ export class UsuarioService {
       this.token = localStorage.getItem('token');
       this.usuario = JSON.parse( localStorage.getItem('usuario'));
 
-
+      // console.log(this.usuario);
     } else {
       this.token = '';
       this.usuario = null;
     }
 
+
+    return (this.usuario);
     }
 
     guardarStorage( id: string, token: string, usuario: Usuario ) {
@@ -101,17 +103,14 @@ export class UsuarioService {
     actualizarUsuario( usuario: Usuario ) {
 
       const url = URL_SERVICIOS + '/usuario/' + usuario._id + '?token=' + this.token;
-      console.log( url );
+      // console.log( url );
 
       return this.http.put( url, usuario ).map( (resp: any) => {
-
-
+        // console.log( resp.usuario);
         if ( usuario._id === this.usuario._id ) {
           const usuarioDB: Usuario = resp.usuario;
           this.guardarStorage( usuarioDB._id, this.token, usuarioDB );
         }
-        swal( 'Usuario actualizado', usuario.nombre, 'success' );
-
         return true;
       });
 
@@ -135,7 +134,7 @@ export class UsuarioService {
   cargarUsuarios( desde: number = 0 ) {
 
   const url = URL_SERVICIOS + '/usuario?desde=' + desde;
-
+  console.log(url);
   return this.http.get( url );
 
   }

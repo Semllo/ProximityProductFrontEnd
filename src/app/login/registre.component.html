@@ -29,6 +29,38 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input formControlName="edad" name="edad" class="form-control" type="date" required placeholder="dd/mm/yyyy">
+                    </div>
+                </div>
+
+                <div class="form-group has-success">
+                    <div class="col-xs-12">
+                        <select formControlName="genero" class="form-control" required>
+                            <option value="true">Femenino</option>
+                            <option value="false">Masculino</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+
+                        <input formControlName="ciudad" name="ciudad" class="form-control" type="text" required placeholder="Ciudad">
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+
+                        <input formControlName="pais" name="pais" class="form-control" type="text" required placeholder="País">
+
+                    </div>
+                </div>
+
+
                 <div class="form-group" *ngIf="forma['errors']?.sonIguales && !forma.pristine">
                     <p class="text-danger">
                         Las contraseñas deben ser iguales

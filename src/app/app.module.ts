@@ -8,26 +8,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { APP_ROUTES } from './app.routes';
 
 // Modulos
+import { PagesModule } from './pages/pages.modulo';
+import { ServiceModule } from './services/service.module';
 
 
 // Componentes
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegistreComponent } from './login/registre.component';
-import { PagesModule } from './pages/pages.modulo';
-
-// Servicios
-import { ServiceModule } from './services/service.module';
-
-
-
-
-
-
-
-
-
-
 
 
 

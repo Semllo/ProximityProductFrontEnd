@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Perfil de usuario</h4>
-                <h6 class="card-subtitle">nombre usuario</h6>
+                <h6 class="card-subtitle">{{usuario.nombre}}</h6>
 
                 <form ngNativeValidate #f="ngForm" (ngSubmit)="guardar( f.value )" class="form p-t-20">
                     <div class="form-group">
@@ -21,6 +21,44 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Ciudad</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fas fa-city"></i></div>
+                            <input [(ngModel)]="usuario.ciudad" name="ciudad" type="text" class="form-control" placeholder="Ciudad" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Pais</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fas fa-globe-americas"></i></div>
+                            <input [(ngModel)]="usuario.pais" name="pais" type="text" class="form-control" placeholder="Pais" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Fecha de nacimiento</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fas fa-table"></i></div>
+                            <input [ngModel]="fecha" name="fecha" type="text" class="form-control" placeholder="dd/mm/yyyy" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Genero</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+
+                                <i class="fa fa-male"></i>
+
+                            </div>
+                            <select class="form-control" [(ngModel)]="genero" name="genero">
+                             <option [selected]="genero" *ngFor="let genero of generos"> {{ genero }}</option>
+                        </select>
+                        </div>
+                    </div>
+
                     <button type="submit" class="btn btn-success waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Guardar</button>
 
                 </form>
@@ -32,7 +70,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Foto de usuario</h4>
-                <h6 class="card-subtitle">nombre usuario</h6>
+                <h6 class="card-subtitle">{{usuario.nombre}}</h6>
                 <img *ngIf="!imagenTemp" [src]="usuario.img | imagen" class="w150">
                 <img *ngIf="imagenTemp" [src]="imagenTemp" class="w150">
 

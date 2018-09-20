@@ -1,0 +1,90 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row">
+
+                    <form ngNativeValidate #f="ngForm" (ngSubmit)="crearSubcategoria( f.value )" class="form col-12 row">
+                        <div class="form-group col-3">
+                            <select class="form-control" [(ngModel)]="categoriaNombre" name="categoriaNombre">
+                                <option [value]="categoria.nombre" *ngFor="let categoria of categorias">{{ categoria.nombre }}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-5">
+                            <input type="text" [ngModel]="subcategoriaNombre" class="form-control" name="subcategoriaNom" placeholder="Nombre de subcategoria">
+                        </div>
+
+                        <div class="col-4">
+                            <button type="submit" class="btn waves-effect waves-light btn-rounded btn-primary"> 
+                                <i class="fa fa-plus"></i>
+                                 Crear Subcategoria
+                            </button>
+                        </div>
+                    </form>
+
+                    <form ngNativeValidate #fo="ngForm" (ngSubmit)="crearcategoria( fo.value )" class="form col-12 row">
+                        <div class="form-group col-6">
+                            <input type="text" [ngModel]="categoriaNombre1" name="catNombre" class="form-control" id="exampleFormControlInput1" placeholder="Nombre de categoria">
+                        </div>
+
+
+                        <div class="col-3">
+                            <button type="button" (click)="crearcategoria(fo.value)" class="btn waves-effect waves-light btn-rounded btn-primary"> 
+                  <i class="fa fa-plus"></i>
+                    Crear Categoria
+                  </button>
+                        </div>
+
+                        <div class="col-3">
+                            <button type="button" (click)="eliminarcategoria(fo.value)" class="btn waves-effect waves-light btn-rounded btn-danger"> 
+                  <i class="fa fa-trash"></i>
+                    Eliminar Categoria
+                  </button>
+                        </div>
+
+                    </form>
+                </div>
+
+                <h3 class="card-title"> Categorias ( <small> {{ total }} </small> )</h3>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Subcategoria</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let subcategorias of subcategorias">
+                            <td>
+                                <select class="form-control" [(ngModel)]="subcategorias.categoria.nombre" name="categoriaNombre">
+                                    <option *ngFor="let categorias of categorias">{{ categorias.nombre }}</option>
+                                </select>
+                            </td>
+                            <td> <input type="text" [(ngModel)]="subcategorias.nombre" name="catNombre" class="form-control" id="exampleFormControlInput1" placeholder="Nombre de categoria"></td>
+                            <td>
+                                <button (click)="actualizarSubcategoria( subcategorias )" class="btn btn-dark">
+                                            <i class="fa fa-save"></i>
+                                              </button>
+
+                                <button (click)="eliminarSubcategoria( subcategorias )" class="btn btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                      </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button (click)="cambiarDesde(-5)" class="btn btn-secondary">
+                    <i class="fa fa-arrow-left"></i>
+                  </button>
+                <button (click)="cambiarDesde(5)" class="btn btn-secondary">
+                      <i class="fa fa-arrow-right"></i>
+                    </button>
+            </div>
+        </div>
+    </div>
+</div>

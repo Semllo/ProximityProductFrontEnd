@@ -18,7 +18,7 @@ export class ModalUploadComponent implements OnInit {
     public _subirArchivoService: SubirArchivosService,
     public _modalUploadService: ModalUploadService
   ) {
-    console.log('Modal listo');
+    // console.log('Modal listo');
    }
 
   ngOnInit() {
@@ -43,7 +43,7 @@ export class ModalUploadComponent implements OnInit {
       return;
     }
 
-    console.log( archivo );
+    // console.log( archivo );
     this.imagenSubir = archivo;
 
     const reader = new FileReader();

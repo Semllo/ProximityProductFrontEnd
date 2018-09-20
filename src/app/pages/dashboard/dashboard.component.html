@@ -1,3 +1,59 @@
-<p>
-  dashboard works!
-</p>
+<div class="row">
+    <h2 class="col-12">Ultimos productos</h2>
+    <div class="column" *ngFor="let productos of productos">
+        <div class="card">
+            <img class="" [src]="productos.img | imagen" alt="Card image cap">
+            <div class="cuerpo">
+                <h4><b> <h5> {{ productos.nombre }} </h5> </b></h4>
+
+                <div class="stars-outer">
+                    <div class="stars-inner" [ngStyle]="{'width':getColor(productos)}"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <h2 class="col-12">Productos populares</h2>
+    <div class="column" *ngFor="let productos of productospop">
+        <div class="card">
+            <img class="" [src]="productos.img | imagen" alt="Card image cap">
+            <div class="cuerpo">
+                <h4><b> <h5> {{ productos.nombre }} </h5> </b></h4>
+
+                <div class="stars-outer">
+                    <div class="stars-inner" [ngStyle]="{'width':getColor(productos)}"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!--
+    
+<div class="card" *ngFor="let productos of productos">
+             
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col">
+
+                        <h5> {{ productos.nombre }} </h5>
+                    </div>
+
+
+
+                    <div class="col">
+
+                        <h5> {{ productos.notamedia }} </h5>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+-->

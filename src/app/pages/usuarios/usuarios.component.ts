@@ -22,7 +22,7 @@ export class UsuariosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // console.log( this.usuarios );
+   // console.log( this.usuarios );
     this.cargarUsuarios();
 
     this._modalUploadService.notificacion.subscribe ( resp => this.cargarUsuarios() );
@@ -39,6 +39,7 @@ export class UsuariosComponent implements OnInit {
       this.cargando = true;
 
       this._usuarioService.cargarUsuarios( this.desde ).subscribe ( (resp: any) => {
+          // console.log(resp.usuarios[0].listasDeDeseos);
             this.totalRegistros = resp.total;
             this.usuarios = resp.usuarios;
             this.cargando = false;
@@ -72,6 +73,7 @@ export class UsuariosComponent implements OnInit {
   this.cargando = true;
   this._usuarioService.buscarUsuarios( termino ).subscribe( (usuarios: Usuario[]) => {
 
+    console.log (usuarios);
     this.usuarios = usuarios;
     this.cargando = false;
 
