@@ -15,6 +15,7 @@ import { ListasdeseosComponent } from './listasdeseos/listasdeseos.component';
 import { ProductosComponent } from './productos/productos.component';
 import { ProductoComponent } from './productos/producto.component';
 import { CategoriasComponent } from './categorias/categorias.component';
+import { ProductosUserComponent } from './productos-user/productos-user/productos-user.component';
 
 const pagesRoutes: Routes = [
 
@@ -30,6 +31,7 @@ const pagesRoutes: Routes = [
             { path: 'perfil', component: ProfileComponent , data: { titulo: 'Perfil de usuario' }  },
             { path: 'criticas', component: CriticasComponent , data: { titulo: 'Criticas de usuario' }  },
             { path: 'deseos', component: ListasdeseosComponent , data: { titulo: 'Mis listas de deseos' }  },
+            { path: 'productoUser/:id', component: ProductosUserComponent , data: { titulo: 'Productos' }  },
 
             // Mantenimientos
             { path: 'usuarios', component: UsuariosComponent , data: { titulo: 'Mantenimiento de usuarios' }  },

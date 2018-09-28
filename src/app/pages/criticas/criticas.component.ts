@@ -12,21 +12,33 @@ import { Producto } from '../../models/producto.model';
 export class CriticasComponent implements OnInit {
 
   usuario: any;
+  criticas: any;
 
   notas = [0, 1, 2, 3, 4, 5 , 6, 7, 8, 9, 10];
 
   constructor( public _usuarioService: UsuarioService ) {
+
+
     this.usuario =  _usuarioService.usuario;
 
+    _usuarioService.vercriticas().subscribe( resp => {
 
-    for ( let i = 0; i < this.usuario.criticas.length; i++ ) {
+      this.criticas = resp.criticas;
 
-      if ( this.usuario.criticas[i].producto == null ) {
-        this.usuario.criticas[i].producto = {img: 'xxx'};
+      for ( let i = 0; i < this.criticas.length; i++ ) {
+
+        if ( this.criticas[i].producto == null ) {
+          this.criticas[i].producto = {img: 'xxx'};
+
+        }
 
       }
 
-    }
+    //  console.log(this.criticas);
+
+    });
+
+   // console.log(this.usuario);
    }
 
   ngOnInit() {
@@ -44,11 +56,47 @@ export class CriticasComponent implements OnInit {
       }
     }
 
-    // console.log(this.usuario);
     // Guardar usuario
     // tslint:disable-next-line:max-line-length
-    this._usuarioService.actualizarUsuario( this.usuario ).subscribe( resp => { swal( 'Critica actualizada', critica.nombre, 'success' ); }, err => {swal( 'Error al actualizar el usuario', critica.nombre, 'error' ); });
+    this._usuarioService.actualizarUsuario( this.usuario ).subscribe( resp => {
+      swal( 'Critica actualizada', critica.nombre, 'success' );
+      console.log(critica.producto);
+      if ( critica.producto._id ) {
+        this._usuarioService.actualizarMedia(  critica.producto._id ).subscribe( respp => console.log(respp) );
+      }
+    }, err => {swal( 'Error al actualizar el usuario', critica.nombre, 'error' ); });
 
+  }
+
+  mostrarUnUsuario() {
+
+    this._usuarioService.mostrarUnUsuario().subscribe( resp => {
+      this.usuario =  resp.usuarios;
+      this._usuarioService.usuario =  resp.usuarios;
+      this.criticas = resp.usuarios.criticas;
+
+      for ( let i = 0; i < this.criticas.length; i++ ) {
+
+        if ( this.criticas[i].producto == null ) {
+          this.criticas[i].producto = {img: 'xxx'};
+
+        }
+
+      }
+
+    });
+
+  }
+
+  eliminarCri ( critica: any ) {
+
+    // console.log(critica);
+
+    // tslint:disable-next-line:max-line-length
+    this._usuarioService.eliminarcritica( critica._id , critica.producto._id ).subscribe( resp => {
+      this.mostrarUnUsuario();
+      // console.log(resp);
+     });
 
   }
 

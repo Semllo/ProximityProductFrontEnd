@@ -35,21 +35,104 @@ body {
 
 /* Responsive columns */
 
-@media screen and (max-width: 1200px) {
+@media screen and (min-width: 800px) {
+    .tarjeta {
+        max-width: 350px;
+        max-height: 350px;
+    }
+    img {
+        max-width: 200px;
+        max-height: 200px;
+        width: 100%;
+        height: 100%;
+        display: block;
+        margin: auto;
+        border-radius: 1px 1px 1px 1px;
+    }
+    .principal {
+        padding-top: 5px;
+        padding-right: 150px;
+        padding-bottom: 1px;
+        padding-left: 150px;
+    }
+    .column {
+        width: 25%;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 1600px) {
+    .tarjeta {
+        max-width: 1200px;
+        max-height: 500px;
+    }
+    img {
+        max-width: 170px;
+        max-height: 170px;
+        width: 100%;
+        height: 100%;
+        display: block;
+        margin: auto;
+        border-radius: 1px 1px 1px 1px;
+    }
+    .principal {
+        padding-top: 5px;
+        padding-right: 20px;
+        padding-bottom: 1px;
+        padding-left: 30px;
+    }
     .column {
         width: 33%;
         display: block;
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 840px) {
+    .tarjeta {
+        max-width: 1200px;
+        max-height: 800px;
+    }
+    img {
+        max-width: 250px;
+        max-height: 250px;
+        width: 100%;
+        height: 100%;
+        display: block;
+        margin: auto;
+        border-radius: 1px 1px 1px 1px;
+    }
+    .principal {
+        padding-top: 5px;
+        padding-right: 10px;
+        padding-bottom: 1px;
+        padding-left: 20px;
+    }
     .column {
         width: 50%;
         display: block;
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 640px) {
+    .tarjeta {
+        max-width: 1200px;
+        max-height: 800px;
+    }
+    img {
+        max-width: 350px;
+        max-height: 350px;
+        width: 100%;
+        height: 100%;
+        display: block;
+        margin: auto;
+        border-radius: 1px 1px 1px 1px;
+    }
+    .principal {
+        padding-top: 5px;
+        padding-right: 10px;
+        padding-bottom: 1px;
+        padding-left: 20px;
+    }
     .column {
         width: 100%;
         display: block;
@@ -72,17 +155,8 @@ body {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 250px;
-    height: 250px;
-    border-radius: 1px 1px 1px 1px;
-}
 
-
-/* Responsive img */
+/* Responsive img 
 
 img {
     display: block;
@@ -93,7 +167,7 @@ img {
     max-width: 100%;
     max-height: 100%;
     border-radius: 1px 1px 1px 1px;
-}
+}*/
 
 .cuerpo {
     padding: 1px 1px;

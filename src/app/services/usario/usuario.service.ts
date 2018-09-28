@@ -111,7 +111,7 @@ export class UsuarioService {
           const usuarioDB: Usuario = resp.usuario;
           this.guardarStorage( usuarioDB._id, this.token, usuarioDB );
         }
-        return true;
+        return resp;
       });
 
     }
@@ -126,7 +126,7 @@ export class UsuarioService {
         this.guardarStorage( id, this.token, this.usuario );
 
        }).catch( resp => {
-        console.log(resp);
+      //  console.log(resp);
        } );
 
     }
@@ -153,5 +153,139 @@ export class UsuarioService {
     return this.http.delete( url );
 
   }
+
+
+  crearCritica( criticia ) {
+
+    const url = URL_SERVICIOS + '/critica/' + this.usuario._id;
+
+    const valor = {nombre: criticia.nombre, descripcion: criticia.descripcion, nota: criticia.nota, producto: criticia.producto};
+   // console.log(valor);
+
+
+   // console.log( valor.producto );
+
+
+    return this.http.post( url , valor ).map( (resp: any) => {
+
+      this.actualizarMedia( valor.producto ).subscribe( respp => {
+        // console.log(respp);
+      });
+
+      // console.log(resp);
+      swal ('Critica creada correctamente', '', 'success' );
+      this.usuario = resp.criticasGuardadas;
+      return resp;
+
+     });
+
+  }
+
+actualizarCritica ( id, lista ) {
+
+
+  const url = URL_SERVICIOS + '/critica/' + this.usuario._id + '/' + id;
+
+  const valor = {nombre: lista.nombre, descripcion: lista.descripcion, producto: lista.producto, nota: lista.nota};
+
+
+  // console.log( valor.producto );
+
+  return this.http.put( url, valor ).map( (resp: any) => {
+
+   // console.log(resp);
+    this.actualizarMedia( valor.producto ).subscribe( respp => {
+     // console.log(respp);
+    });
+    swal ('Critica actualizada correctamente', '', 'success' );
+    return resp;
+
+   });
+
+}
+
+
+   eliminarcritica( id, producto? ) {
+
+    const url = URL_SERVICIOS + '/critica/' + this.usuario._id + '/' + id;
+
+   // console.log( producto );
+
+    return this.http.delete( url ).map( (resp: any) => {
+
+      if ( producto ) {
+      this.actualizarMedia( producto ).subscribe( respp => {
+      // console.log(respp);
+      });
+      }
+      // console.log(resp);
+      return resp;
+
+     });
+
+   }
+
+   actualizarMedia ( id ) {
+
+    let url;
+
+    if (id._id) {
+       url = URL_SERVICIOS + '/critica/' + id._id;
+     } else {
+        url = URL_SERVICIOS + '/critica/' + id;
+     }
+
+    console.log(url);
+    return this.http.put( url, id ).map( (resp: any) => {
+
+      console.log(resp);
+      return resp;
+
+     });
+
+   }
+
+   vercriticas () {
+
+    const url = URL_SERVICIOS + '/critica/' + this.usuario._id;
+    return this.http.get( url ).map( (resp: any) => {
+
+      console.log(resp);
+      return resp;
+
+     });
+
+   }
+
+
+   añadirAdeseos ( id , lista ) {
+
+    const url = URL_SERVICIOS + '/listadedeseos/' + this.usuario._id + '/' + id;
+    console.log(lista);
+    return this.http.put( url, lista ).map( (resp: any) => {
+
+     // console.log(resp);
+      return resp;
+
+     });
+
+   }
+
+
+
+
+   mostrarUnUsuario () {
+
+    const url = URL_SERVICIOS + '/usuario/' + this.usuario._id;
+
+    return this.http.get( url ).map( (resp: any) => {
+
+     // console.log(resp);
+      return resp;
+
+     });
+
+   }
+
 
 }

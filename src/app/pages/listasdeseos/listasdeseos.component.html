@@ -17,7 +17,7 @@
                     <h5>Nombre de lista:</h5>
                 </div>
                 <div class="input-group col-sm-10">
-                    <input #nombrelista [ngModel]="deseos.nombre" name="nombre" type="text" class="form-control text-themecolor" placeholder="Nombre de la lista" required>
+                    <input #nombrelista [(ngModel)]="deseos.nombre" name="nombre" type="text" class="form-control text-themecolor" placeholder="Nombre de la lista" required>
                 </div>
 
                 <div class="col-sm-1">
@@ -40,7 +40,7 @@
 
                         <div class="col-sm-11 form-group input-group">
                             <select class="form-control" name="deseo" name="deseo" [ngModel]="deseos.producto[0].nombre">
-                                 <option *ngFor="let producto of deseos.producto" >{{ producto.nombre }} </option>
+                                 <option [value]="producto.nombre" *ngFor="let producto of deseos.producto" >{{ producto.nombre }} </option>
                            </select>
                         </div>
 

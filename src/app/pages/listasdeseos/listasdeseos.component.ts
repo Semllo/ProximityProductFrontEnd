@@ -15,17 +15,33 @@ export class ListasdeseosComponent implements OnInit {
     constructor( public _usuarioService: UsuarioService ) {
       this.usuario = _usuarioService.usuario;
 
+      // console.log(this.usuario);
       for ( let i = 0; i < this.usuario.listasDeDeseos.length; i++) {
-         if ( this.usuario.listasDeDeseos[i].producto.length === 0) {
-          this.usuario.listasDeDeseos[i].producto[0] = [{nombre: 'Lista vacia'}];
-         }
+        if ( this.usuario.listasDeDeseos[i].producto.length === 0) {
+         this.usuario.listasDeDeseos[i].producto[0] = {nombre: 'Lista vacia'};
         }
+       }
 
       // console.log(this.usuario);
      }
 
 
     ngOnInit() {
+
+      this._usuarioService.mostrarUnUsuario().subscribe( resp => {
+
+        this.usuario = resp.usuarios;
+       // console.log(this.usuario);
+      for ( let i = 0; i < this.usuario.listasDeDeseos.length; i++) {
+        if ( this.usuario.listasDeDeseos[i].producto.length === 0) {
+         this.usuario.listasDeDeseos[i].producto[0] = {nombre: 'Lista vacia'};
+        }
+       }
+        console.log(this.usuario);
+
+      });
+
+
     }
 
     cargarUsuarios() {
@@ -74,17 +90,21 @@ export class ListasdeseosComponent implements OnInit {
 
     borrarProducto(producto: any, lista: any) {
 
-       console.log(producto);
+      // console.log(producto);
 
-       console.log(lista);
+      // console.log(lista);
        let idLista: any;
        let idPro: any;
        let a: any;
 
+
+       // console.log(this.usuario);
+       // console.log('llega');
        if ( producto.deseo === 'Lista vacia' || this.usuario.listasDeDeseos[0].producto.length === 0 ) {
         swal( 'Error al actualizar la lista', 'La lista no contiene productos', 'error' );
         return; }
 
+      //  console.log('llega');
 
       for (let i = 0 ; i < lista.producto.length; i++) {
         if ( lista.producto[i].nombre === producto.deseo ) {
@@ -94,32 +114,48 @@ export class ListasdeseosComponent implements OnInit {
         }
       }
 
-        for ( let i = 0; i < this.usuario.listasDeDeseos.length - 1; i++) {
+
+
+        for ( let i = 0; i <= this.usuario.listasDeDeseos.length - 1; i++) {
+           console.log('llega');
           if ( this.usuario.listasDeDeseos[i]._id === idLista) {
             a = i;
-          for ( let j = 0; j < this.usuario.listasDeDeseos[i].producto.length - 1; j++) {
 
-          if ( this.usuario.listasDeDeseos[i].producto[j]._id === idPro ) {
+            if ( this.usuario.listasDeDeseos[i].producto.length > 0 ) {
 
-            if ( this.usuario.listasDeDeseos[i].producto.length === 1) {
+              for ( let j = 0; j < this.usuario.listasDeDeseos[i].producto.length - 1; j++) {
+
+                if ( this.usuario.listasDeDeseos[i].producto[j]._id === idPro ) {
+                  if ( this.usuario.listasDeDeseos[i].producto.length <= 1) {
+                    console.log(this.usuario);
+                    this.usuario.listasDeDeseos[i].producto[0] = {nombre: 'Lista vacia'};
+                    } else {
+                      console.log(this.usuario);
+                    this.usuario.listasDeDeseos[i] = lista;
+                   }
+                }
+              }
+
+            } else {
+
               this.usuario.listasDeDeseos[i].producto[0] = {nombre: 'Lista vacia'};
-              } else {
-              this.usuario.listasDeDeseos[i] = lista;
-             }
-          }
-        }
-      }
 
+            }
+      }
       if ( producto.deseo === 'Lista vacia' || this.usuario.listasDeDeseos[0].producto.length === 0 ) {
+        console.log(this.usuario);
         this.usuario.listasDeDeseos[i].producto[0] = [{nombre: 'Lista vacia'}];
        }
-        console.log(this.usuario);
+
+       console.log(this.usuario);
+       // console.log(this.usuario);
+      }
+
+
       // tslint:disable-next-line:max-line-length
-      this._usuarioService.actualizarUsuario( this.usuario ).subscribe( resp => { swal( 'Producto eliminado de la lista', producto.deseo, 'success' ); this.cargarUsuarios(); }, err => {swal( 'Error al eliminar el producto', producto.deseo, 'error' ); });
+    this._usuarioService.actualizarUsuario( this.usuario ).subscribe( resp => { console.log(resp); swal( 'Producto eliminado de la lista', producto.deseo, 'success' ); this.cargarUsuarios(); }, err => {swal( 'Error al eliminar el producto', producto.deseo, 'error' ); });
 
 
-
-    }
   } // fin borrarProducto
 
 

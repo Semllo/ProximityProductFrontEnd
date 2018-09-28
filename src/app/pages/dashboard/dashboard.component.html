@@ -1,27 +1,27 @@
-<div class="row">
-    <h2 class="col-12">Ultimos productos</h2>
-    <div class="column" *ngFor="let productos of productos">
-        <div class="card">
-            <img class="" [src]="productos.img | imagen" alt="Card image cap">
+<div class="row principal">
+    <h2 class="col-sm-12">Ultimos productos</h2>
+    <div class="column" *ngFor="let producto of productos">
+        <div class="card" (click)=navegarProducto(producto._id)>
+            <img class="" [src]="producto.img | imagen" alt="Card image cap">
             <div class="cuerpo">
-                <h4><b> <h5> {{ productos.nombre }} </h5> </b></h4>
+                <h4><b> <h5> {{ producto.nombre }} </h5> </b></h4>
 
                 <div class="stars-outer">
-                    <div class="stars-inner" [ngStyle]="{'width':getColor(productos)}"></div>
+                    <div class="stars-inner" [ngStyle]="{'width':getColor(producto)}"></div>
                 </div>
 
             </div>
         </div>
     </div>
-    <h2 class="col-12">Productos populares</h2>
-    <div class="column" *ngFor="let productos of productospop">
-        <div class="card">
-            <img class="" [src]="productos.img | imagen" alt="Card image cap">
+    <h2 class="col-sm-12">Productos populares</h2>
+    <div class="column" *ngFor="let producto of productospop">
+        <div class="card" (click)=navegarProducto(producto._id)>
+            <img class="" [src]="producto.img | imagen" alt="Card image cap">
             <div class="cuerpo">
-                <h4><b> <h5> {{ productos.nombre }} </h5> </b></h4>
+                <h4><b> <h5> {{ producto.nombre }} </h5> </b></h4>
 
                 <div class="stars-outer">
-                    <div class="stars-inner" [ngStyle]="{'width':getColor(productos)}"></div>
+                    <div class="stars-inner" [ngStyle]="{'width':getColor(producto)}"></div>
                 </div>
 
             </div>

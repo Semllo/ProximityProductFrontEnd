@@ -28,6 +28,7 @@ import { ListasdeseosComponent } from './listasdeseos/listasdeseos.component';
 import { ProductosComponent } from './productos/productos.component';
 import { ProductoComponent } from './productos/producto.component';
 import { CategoriasComponent } from './categorias/categorias.component';
+import { ProductosUserComponent } from './productos-user/productos-user/productos-user.component';
 
 
 
@@ -49,7 +50,8 @@ import { CategoriasComponent } from './categorias/categorias.component';
             ListasdeseosComponent,
             ProductosComponent,
             ProductoComponent,
-            CategoriasComponent
+            CategoriasComponent,
+            ProductosUserComponent
         ],
         exports: [
             DashboardComponent,

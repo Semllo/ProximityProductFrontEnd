@@ -1,4 +1,4 @@
-<div class="row principal animated fadeIn" *ngFor="let criticas of usuario.criticas">
+<div class="row principal animated fadeIn" *ngFor="let criticas of criticas">
 
     <div class="col-sm-12 fadeIn principal">
         <div class="card tarjeta w3-border w3-hover-border-black cardshadow w3-panel fadeIn">
@@ -25,13 +25,13 @@
                         <div class="row col-sm-3">
 
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-dark btn-block"> 
+                                <button type="submit" class="btn btn-dark btn-block">  
                                         <i class="fa fa-save"></i>
                                 </button>
                             </div>
 
                             <div class=" col-md-12">
-                                <button class="btn btn-danger btn-block"> 
+                                <button (click)="eliminarCri(criticas)" type="button" class="btn btn-danger btn-block"> 
                                   <i class="fa fa-trash-o"></i>
                                 </button>
                             </div>

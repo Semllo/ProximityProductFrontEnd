@@ -1,0 +1,102 @@
+<div class="row">
+
+    <div class="col-sm-4">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <img [src]="producto.img | imagen:'producto'">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <pre>{{producto.descripcion}}</pre>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-sm-8 row">
+
+        <div class="col-sm-2">{{producto.nombre}}</div>
+        <div class="col-sm-2">{{producto.notamedia}}</div>
+        <div class="col-sm-8"></div>
+        <div class="col-sm-12">
+            <hr>
+        </div>
+
+        <div class="col-sm-2">
+
+            <div class="form-group">
+                <select class="form-control" [(ngModel)]="critica.nota">
+              <option [ngValue]="nota" *ngFor="let nota of notas">{{nota}}</option>
+            </select>
+            </div>
+
+        </div>
+        <div class="col-sm-4">
+
+            <div class="form-group">
+                <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="deseo">
+              <option *ngIf="deseo == 'Sin listas de deseos'" [value]=""> Sin listas de deseos </option>
+              <option [ngValue]="deseos"  *ngFor="let deseos of usuario.listasDeDeseos">{{deseos.nombre}}</option>
+              
+            </select>
+
+            </div>
+
+        </div>
+        <div class="col-sm-2">
+
+            <div class="text-right">
+                <button type="button" (click)="listaDeseos(deseo)" class="btn waves-effect waves-light btn-rounded btn-primary"> 
+          <i class="fa fa-plus"></i>
+            Añadir a mis deseos
+          </button>
+            </div>
+
+        </div>
+        <div class="col-sm-4"></div>
+
+        <div class="row col-sm-10">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <input [(ngModel)]="critica.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre de la crítica">
+                        <textarea [(ngModel)]="critica.descripcion" placeholder="Escriba su criticas" name="descripcion" type="text" class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10"></textarea>
+
+                        <button (click)="guardarCri(critica)" type="button" class="btn waves-effect waves-light btn-rounded btn-primary"> 
+                            <i class="fa fa-save"></i>
+                              Guardar critica
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row col-sm-10">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        Opiniones destacadas
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

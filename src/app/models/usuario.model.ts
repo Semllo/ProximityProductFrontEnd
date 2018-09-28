@@ -13,6 +13,7 @@ export class Usuario {
         public role: string = 'USER_ROLE',
         public google?: boolean,
         public _id?: string,
+        public listasDeDeseos?: string,
         public criticas?: Array<{Criticas}>
     ) { }
 

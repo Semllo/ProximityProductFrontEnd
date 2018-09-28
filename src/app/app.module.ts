@@ -18,7 +18,6 @@ import { LoginComponent } from './login/login.component';
 import { RegistreComponent } from './login/registre.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

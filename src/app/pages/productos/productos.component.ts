@@ -54,7 +54,6 @@ this._productosService.borrarProducto( producto._id ).subscribe( () => this.carg
 
 navegarProducto ( id: any ) {
   // console.log(id);
-  this._productosService.setproducto(id);
   this.router.navigate(['/producto', id._id]);
 }
 

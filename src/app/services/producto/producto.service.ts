@@ -22,7 +22,7 @@ export class ProductoService {
 
   cargarProductos( desde: number = 0 ) {
 
-    const url = URL_SERVICIOS + '/producto?desde=' + desde;
+    const url = URL_SERVICIOS + '/indicadores/desc/fecha';
     // console.log(url);
     return this.http.get( url ).map( (resp: any) => {
 
@@ -104,11 +104,27 @@ export class ProductoService {
 
         }
 
-        setproducto (producto) {
-          this.producto = producto;
-        }
+        mostrarCriticas () {
+          const url = URL_SERVICIOS + '/usuario/usuarios';
+          return this.http.get( url ).map( (resp: any) => {
 
-        getproducto () {
-           return this.producto;
+            // tslint:disable-next-line:prefer-const
+           let criticas = [];
+            let contador = 0;
+
+            for (let i = 0; i < resp.usuarios.length; i++) {
+              for (let j = 0; j < resp.usuarios[i].criticas.length; j++) {
+
+
+              criticas[contador] = resp.usuarios[i].criticas[j];
+              // console.log(criticas[contador]);
+              contador++;
+
+              }
+            }
+
+            return criticas;
+          });
+
         }
 }
