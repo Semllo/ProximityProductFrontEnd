@@ -1,0 +1,18 @@
+<div class="row principal">
+
+    <h2 class="col-sm-12">Mis productos recomendados</h2>
+    <div class="column fadeIn animated" *ngFor="let recomendacion of recomendaciones">
+        <div class="card" (click)=navegarProducto(recomendacion.producto._id)>
+            <img class="" [src]="recomendacion.producto.img | imagen" alt="Card image cap">
+            <div class="cuerpo">
+                <h4><b> <h5> {{ recomendacion.producto.nombre }} </h5> </b></h4>
+
+                <div class="stars-outer">
+                    <div class="stars-inner" [ngStyle]="{'width':getColor(recomendacion.producto)}"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

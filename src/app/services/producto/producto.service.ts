@@ -22,6 +22,19 @@ export class ProductoService {
 
   cargarProductos( desde: number = 0 ) {
 
+    const url = URL_SERVICIOS + '/producto?desde=' + desde;
+    // console.log(url);
+    return this.http.get( url ).map( (resp: any) => {
+
+      this.totalProductos = resp.total;
+      return resp.productos;
+
+    });
+
+    }
+
+  cargarProductosNuevos( desde: number = 0 ) {
+
     const url = URL_SERVICIOS + '/indicadores/desc/fecha';
     // console.log(url);
     return this.http.get( url ).map( (resp: any) => {
@@ -40,6 +53,13 @@ export class ProductoService {
       return this.http.get( url );
 
       }
+
+      cargarProductosTop( desde: string = '' ) {
+
+        const url = URL_SERVICIOS + '/indicadores/desc/notamedia' + desde;
+        // console.log(url);
+        return this.http.get( url );
+        }
 
       buscarProductos( termino: string ) {
 

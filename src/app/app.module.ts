@@ -1,5 +1,6 @@
 // General
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -8,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { APP_ROUTES } from './app.routes';
 
 // Modulos
-import { PagesModule } from './pages/pages.modulo';
+// import { PagesModule } from './pages/pages.module';
 import { ServiceModule } from './services/service.module';
 
 
@@ -16,21 +17,28 @@ import { ServiceModule } from './services/service.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegistreComponent } from './login/registre.component';
+import { PagesComponent } from './pages/pages.component';
+import { SharedModule } from './shared/shared.modulo';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegistreComponent
+    RegistreComponent,
+    PagesComponent
   ],
   imports: [
     BrowserModule,
     APP_ROUTES,
-    PagesModule,
+    // PagesModule,
     ServiceModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServiceModule,
+    BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

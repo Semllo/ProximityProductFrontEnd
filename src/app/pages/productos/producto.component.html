@@ -20,11 +20,10 @@
                         </div>
 
                         <div class="form-group">
-                            <select [(ngModel)]="producto.subcategoria" name="subcategoria" class="form-control">
-                                        <option class="" [ngValue]="subcategoria" *ngFor="let subcategoria of subcategorias"> {{subcategoria.categoria.nombre}} {{subcategoria.nombre}} </option>
+                            <select [(ngModel)]="producto.subcategoria._id" name="subcategoria" class="form-control">
+                                        <option class="" [ngValue]="subcategoria._id" *ngFor="let subcategoria of subcategorias"> {{subcategoria.categoria.nombre}} {{subcategoria.nombre}} </option>
                             </select>
                         </div>
-
 
                         <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Guardar</button>
                         <button type="button" routerLink="/productos" class="btn btn-inverse waves-effect waves-light">Cancel</button>

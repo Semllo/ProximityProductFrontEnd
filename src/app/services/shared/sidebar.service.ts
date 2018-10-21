@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
+import { UsuarioService } from '../usario/usuario.service';
 
 @Injectable()
 export class SidebarService {
 
+  menu: any = [];
   menuUser: any = [{
       submenu: [
       { titulo: 'Perfil', url: '/perfil', icono: 'fas fa-user'  },
+      { titulo: 'Recomendaciones', url: '/recomendaciones', icono: 'fas fa-heart'   },
       { titulo: 'Mis críticas', url: '/criticas', icono: 'fas fa-comments'   },
-      { titulo: 'Mis deseos', url: '/deseos', icono: 'fas fa-heart' },
+      { titulo: 'Mis deseos', url: '/deseos', icono: 'fas fa-list-ul' },
       { titulo: 'Estilos', url: '/account-settings', icono: 'ti-settings'   },
       { titulo: 'Cerrar sesión', url: '/login', icono: 'fa fa-power-off'   }
     ]
   }];
 
-  menu: any = [
+  /*menu: any = [
     /*{
       titulo: 'Principal',
       icono: 'mdi mdi-gauge',
@@ -23,7 +26,7 @@ export class SidebarService {
         { titulo: 'Gráficas', url: '/graficas1'  },
         { titulo: 'Promesas', url: '/promesas'  }
       ]
-    },*/
+},*//*
     {
       titulo: 'Mantenimiento',
       icono: 'mdi mdi-folder-lock-open',
@@ -33,8 +36,14 @@ export class SidebarService {
         { titulo: 'Categorias', url: '/categorias', icono: 'fas fa-tasks'  }
       ]
     }
-  ];
+  ];*/
 
-  constructor() { }
+  constructor(
+    public _usuarioService: UsuarioService
+  ) {
+    }
 
+    cargarMenu() {
+      this.menu = this._usuarioService.menu;
+    }
 }

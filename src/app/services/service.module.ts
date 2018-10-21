@@ -12,7 +12,11 @@ import {
     LoginGuardGuard,
     SubirArchivosService,
     ProductoService,
-    CategoriaService } from './service.index';
+    CategoriaService,
+    AdminGuard,
+    VerificaTokenGuard
+   } from './service.index';
+
 
 
 
@@ -28,9 +32,11 @@ import {
     UsuarioService,
     ProductoService,
     LoginGuardGuard,
+    AdminGuard,
     SubirArchivosService,
     ModalUploadService,
-    CategoriaService
+    CategoriaService,
+    VerificaTokenGuard
     ],
   declarations: []
 })

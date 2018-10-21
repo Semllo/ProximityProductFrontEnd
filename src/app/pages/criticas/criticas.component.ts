@@ -25,6 +25,7 @@ export class CriticasComponent implements OnInit {
 
       this.criticas = resp.criticas;
 
+      console.log(this.criticas);
       for ( let i = 0; i < this.criticas.length; i++ ) {
 
         if ( this.criticas[i].producto == null ) {
@@ -34,11 +35,10 @@ export class CriticasComponent implements OnInit {
 
       }
 
-    //  console.log(this.criticas);
 
     });
 
-   // console.log(this.usuario);
+    // console.log(this.usuario)
    }
 
   ngOnInit() {

@@ -122,10 +122,39 @@ export class CategoriasComponent implements OnInit {
         // this.cambiarDesde(this.desde);
     } else { this.mostrarSubCategorias(); }
 
-      this._categoriaService.eliminarSubCat( id._id ).subscribe( (resp: any  ) => {  console.log(resp);
-        swal( 'Subcategoria eliminada', resp.subcategoria.nombre, 'success' );
-         this.mostrarSubCategorias();
-      });
+
+    const swalWithBootstrapButtons = swal.mixin({
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      buttonsStyling: false,
+    });
+
+    swalWithBootstrapButtons({
+      title: '¿Esta seguro que quiere eliminar la subcategoria?',
+      text: 'La subcategoria: ' + id.nombre + ' será eliminada!',
+      type: 'warning',
+      showCancelButton: true,
+      cancelButtonText: '<i class="fa fa-times"></i> No, cancelar!',
+      confirmButtonText: '<i class="fa fa-check"></i> Si, deseo eliminar la subcategoria!',
+      reverseButtons: true
+    }).then((borrar) => {
+
+      if (borrar.value) {
+
+        this._categoriaService.eliminarSubCat( id._id ).subscribe( (resp: any  ) => {  console.log(resp);
+          swalWithBootstrapButtons( 'Subcaegoria eliminada!', 'La subcategoria ha sido eliminada con exito', 'success' );
+          this.mostrarSubCategorias();
+       }, err => {
+        swalWithBootstrapButtons('Error', 'La subcategoria no ha sido eliminado',  'error' );
+        });
+
+      } else if (
+        // Read more about handling dismissals
+        borrar.dismiss === swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons('Operación cancelada', 'La subctaegoria no ha sido eliminado', 'error');
+      }
+    });
 
   }
 

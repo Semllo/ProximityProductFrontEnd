@@ -32,11 +32,12 @@
                             <th>ID</th>
                             <th>Categoria</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let producto of productos">
-                            <td><img [src]="producto.img | imagen:'producto'" class="img-50 img-circle"></td>
+                            <td><img [src]="producto.img | imagen:'producto'" class="img-50"></td>
                             <td>{{ producto.nombre }}</td>
                             <td> {{ producto._id }}</td>
                             <td> {{ producto.subcategoria.categoria.nombre }} {{ producto.subcategoria.nombre }}</td>
@@ -44,7 +45,8 @@
                                 <button (click)="navegarProducto( producto )" class="btn btn-primary">
                               <i class="fa fa-edit"></i>
                             </button>
-
+                            </td>
+                            <td>
                                 <button (click)="borrarProducto( producto )" class="btn btn-danger">
                                     <i class="fa fa-trash"></i>
                                       </button>

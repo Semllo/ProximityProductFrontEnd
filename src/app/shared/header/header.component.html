@@ -43,8 +43,8 @@
                 <!-- Search -->
                 <!-- ============================================================== -->
                 <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
-                    <form class="app-search">
-                        <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
+                    <div class="app-search">
+                        <input #input (keyup.enter)="buscar( input.value )" type="text" class="form-control" placeholder="Busque & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </div>
                 </li>
                 <!-- ============================================================== -->
                 <!-- Messages -->
@@ -120,7 +120,7 @@
                                 </div>
                             </li>
                             <li role="separator" class="divider"></li>
-                            <li *ngFor="let submenu of menuUser.submenu"><a [routerLink]="[submenu.url ]"><i [class]="submenu.icono"></i>  {{ submenu.titulo }} </a></li>
+                            <li *ngFor="let submenu of menuUser.submenu"><a [routerLink]="[submenu.url ]" (click)="esLogout( submenu )"><i [class]="submenu.icono"></i>  {{ submenu.titulo }} </a></li>
 
                         </ul>
                     </div>

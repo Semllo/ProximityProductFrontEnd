@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
 import { UsuarioService } from '../../services/service.index';
 import swal from 'sweetalert2';
-import { renderDetachView } from '../../../../node_modules/@angular/core/src/view/view_attach';
+import { renderDetachView } from '@angular/core/src/view/view_attach';
 import { resolve } from 'dns';
 
 @Component({
@@ -21,6 +21,8 @@ export class ProfileComponent implements OnInit {
 
   imagenSubir: File;
   imagenTemp: string;
+
+
 
   constructor( public _usuarioService: UsuarioService) {
 
@@ -41,7 +43,9 @@ export class ProfileComponent implements OnInit {
 
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   guardar( usuario: any ) {
 

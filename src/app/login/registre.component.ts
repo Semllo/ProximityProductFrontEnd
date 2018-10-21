@@ -115,7 +115,14 @@ registrarUsuario() {
 
     console.log(usuario);
   // tslint:disable-next-line:max-line-length
-  this._usuarioService.crearUsuario( usuario ).subscribe( (resp => this.router.navigate(['/login'])), ( err => { swal('Acceso denegado', 'Error' , 'error'); }));
+  this._usuarioService.crearUsuario( usuario ).subscribe( (resp => this.router.navigate(['/login'])), ( err => {
+    if ( err.error.errors.errors.email.path === 'email' ) {
+      console.log(err);
+      swal('El email ya existe', 'Por favor, introduzca otro!' , 'warning');
+      return;
+    }
+    console.log(err); swal('Acceso denegado', 'Error' , 'error');
+  }));
 
 }
 }

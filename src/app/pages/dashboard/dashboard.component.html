@@ -1,6 +1,7 @@
-<div class="row principal">
+<div class="row principal" [@pronuevos]='productos.length' [@propopulares]='productospop.length' [@protop]='productostop.length'>
+
     <h2 class="col-sm-12">Ultimos productos</h2>
-    <div class="column" *ngFor="let producto of productos">
+    <div class="column fadeIn animated" *ngFor="let producto of productos">
         <div class="card" (click)=navegarProducto(producto._id)>
             <img class="" [src]="producto.img | imagen" alt="Card image cap">
             <div class="cuerpo">
@@ -13,8 +14,9 @@
             </div>
         </div>
     </div>
+
     <h2 class="col-sm-12">Productos populares</h2>
-    <div class="column" *ngFor="let producto of productospop">
+    <div class="column  fadeIn animated" *ngFor="let producto of productospop">
         <div class="card" (click)=navegarProducto(producto._id)>
             <img class="" [src]="producto.img | imagen" alt="Card image cap">
             <div class="cuerpo">
@@ -24,6 +26,19 @@
                     <div class="stars-inner" [ngStyle]="{'width':getColor(producto)}"></div>
                 </div>
 
+            </div>
+        </div>
+    </div>
+
+    <h2 class="col-sm-12">Top productos</h2>
+    <div class="column  fadeIn animated" *ngFor="let producto of productostop">
+        <div class="card" (click)=navegarProducto(producto._id)>
+            <img class="" [src]="producto.img | imagen" alt="Card image cap">
+            <div class="cuerpo">
+                <h4><b> <h5> {{ producto.nombre }} </h5> </b></h4>
+                <div class="stars-outer">
+                    <div class="stars-inner" [ngStyle]="{'width':getColor(producto)}"></div>
+                </div>
             </div>
         </div>
     </div>

@@ -75,6 +75,17 @@ export class ProductosUserComponent implements OnInit {
 
   }
 
+  getColor( producto: any ) {
+    // console.log(producto.notamedia * 10);
+    // tslint:disable-next-line:triple-equals
+
+    if (  isNaN(producto.notamedia) ) {
+     return '0%';
+    }
+   // console.log((producto.notamedia * 10) + '%');
+   return (producto.notamedia * 10) + '%';
+ }
+
   guardarCri (critica: any) {
 
       // console.log(critica);

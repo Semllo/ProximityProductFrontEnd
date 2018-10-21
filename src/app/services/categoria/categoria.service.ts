@@ -11,9 +11,9 @@ export class CategoriaService {
 
    }
 
-   mostrarSubCat( desde: number = 0 ) {
+   mostrarSubCat( desde: number = 0, hasta: number = 5 ) {
 
-    const url = URL_SERVICIOS + '/subcategoria?desde=' + desde;
+    const url = URL_SERVICIOS + '/subcategoria?desde=' + desde + '&hasta=' + hasta;
     return this.http.get( url );
 
    }
