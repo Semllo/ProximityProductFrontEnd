@@ -1,4 +1,9 @@
-# HospitalTFG
+# BackEnd
+
+The server part can be found:
+https://github.com/Semllo/ProximityProductBackEnd
+
+# ProximityProductFrontEnd
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.0.
 
