@@ -18,6 +18,7 @@ export class UsuarioService {
     usuario: Usuario;
     token: string;
     menu: any = [];
+    ImagenCargado = false;
 
     constructor( public http: HttpClient,
       public router: Router,
@@ -149,16 +150,17 @@ export class UsuarioService {
     }
 
     cambiarImagen ( archivo: File, id: string ) {
-
+      this.ImagenCargado = true;
       this._subirArchivoService.subirArchivo( archivo , 'usuarios', id  ).then( (resp: any) => {
         console.log( resp );
 
         this.usuario.img = resp.usuario.img;
         swal('Imagen actualizada', this.usuario.nombre ,  'success');
         this.guardarStorage( id, this.token, this.usuario, this.menu );
-
+        this.ImagenCargado = false;
        }).catch( resp => {
       //  console.log(resp);
+      this.ImagenCargado = false;
        } );
 
     }
@@ -304,6 +306,18 @@ actualizarCritica ( id, lista ) {
    }
 
 
+   mostrarUsuarios () {
+
+    const url = URL_SERVICIOS + '/usuario/usuarios';
+
+    return this.http.get( url ).map( (resp: any) => {
+
+     // console.log(resp);
+      return resp;
+
+     });
+
+   }
 
 
    mostrarUnUsuario () {

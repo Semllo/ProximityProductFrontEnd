@@ -1,8 +1,24 @@
-<div class="row principal" [@pronuevos]='productos.length' [@propopulares]='productospop.length' [@protop]='productostop.length'>
+<div class="row animated fadeIn" *ngIf="cargando">
+
+    <div class="col-sm-12">
+
+        <div class="alert alert-warning text-center">
+            <strong>Cargando</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span>Espere por favor</span>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row principal" [@pronuevos]='productos.length' [@propopulares]='productospop.length' [@protop]='productostop.length' *ngIf="!cargando">
 
     <h2 class="col-sm-12">Ultimos productos</h2>
     <div class="column fadeIn animated" *ngFor="let producto of productos">
-        <div class="card" (click)=navegarProducto(producto._id)>
+        <div class="card pointer" (click)=navegarProducto(producto._id)>
             <img class="" [src]="producto.img | imagen" alt="Card image cap">
             <div class="cuerpo">
                 <h4><b> <h5> {{ producto.nombre }} </h5> </b></h4>
@@ -17,7 +33,7 @@
 
     <h2 class="col-sm-12">Productos populares</h2>
     <div class="column  fadeIn animated" *ngFor="let producto of productospop">
-        <div class="card" (click)=navegarProducto(producto._id)>
+        <div class="card pointer" (click)=navegarProducto(producto._id)>
             <img class="" [src]="producto.img | imagen" alt="Card image cap">
             <div class="cuerpo">
                 <h4><b> <h5> {{ producto.nombre }} </h5> </b></h4>
@@ -32,7 +48,7 @@
 
     <h2 class="col-sm-12">Top productos</h2>
     <div class="column  fadeIn animated" *ngFor="let producto of productostop">
-        <div class="card" (click)=navegarProducto(producto._id)>
+        <div class="card pointer" (click)=navegarProducto(producto._id)>
             <img class="" [src]="producto.img | imagen" alt="Card image cap">
             <div class="cuerpo">
                 <h4><b> <h5> {{ producto.nombre }} </h5> </b></h4>

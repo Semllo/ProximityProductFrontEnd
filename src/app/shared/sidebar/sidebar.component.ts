@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SidebarService, UsuarioService } from '../../services/service.index';
 import { Usuario } from '../../models/usuario.model';
 
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -13,21 +14,29 @@ export class SidebarComponent implements OnInit {
 
   constructor( public _sidebar: SidebarService,
                public _usuarioService: UsuarioService
-    ) { }
+    ) {
+    this.usuario = this._usuarioService.usuario;
+    this._sidebar.cargarMenuCat();
+    this._sidebar.cargarMenu();
+     }
 
   ngOnInit() {
-    this.usuario = this._usuarioService.usuario;
-    this._sidebar.cargarMenu();
+    console.log(this._sidebar.menuCat);
+    console.log('Sidebar cargado');
   }
+
+
 
   esLogout ( submenu: any ) {
 
-    console.log(submenu);
+    // console.log(submenu);
     if ( submenu.titulo === 'Cerrar sesión' ) {
           console.log('logout');
           this._usuarioService.logout();
     }
 
   }
+
+
 
 }

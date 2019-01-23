@@ -1,5 +1,7 @@
 // General
 import { NgModule } from '@angular/core';
+import {NgxWigModule} from 'ngx-wig';
+
 
 // Rutas
 import { PAGES_ROUTES } from './pages.routes';
@@ -31,6 +33,7 @@ import { CategoriasComponent } from './categorias/categorias.component';
 import { ProductosUserComponent } from './productos-user/productos-user/productos-user.component';
 import { RecomendacionesComponent } from './recomendaciones/recomendaciones/recomendaciones.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { VerporcatComponent } from './verporcat/verporcat/verporcat.component';
 
 
 
@@ -54,7 +57,8 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
             CategoriasComponent,
             ProductosUserComponent,
             RecomendacionesComponent,
-            BusquedaComponent
+            BusquedaComponent,
+            VerporcatComponent
         ],
         exports: [
             DashboardComponent,
@@ -67,7 +71,9 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
             PAGES_ROUTES,
             FormsModule,
             ChartsModule,
-            PipesModule
+            PipesModule,
+            NgxWigModule
+
           ]
 
 })

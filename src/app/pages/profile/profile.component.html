@@ -41,7 +41,7 @@
                         <label for="exampleInputEmail1">Fecha de nacimiento</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fas fa-table"></i></div>
-                            <input [ngModel]="fecha" name="fecha" type="text" class="form-control complex-colorpicker" id="datepicker" placeholder="dd/mm/yyyy" required>
+                            <input [ngModel]="fecha" name="fecha" type="text" class="form-control mydatepicker" id="datepicker" placeholder="dd/mm/yyyy">
                         </div>
                     </div>
 
@@ -68,7 +68,7 @@
 
     <div class="col-lg-5">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" *ngIf="!_usuarioService.ImagenCargado">
                 <h4 class="card-title">Foto de usuario</h4>
                 <h6 class="card-subtitle">{{usuario.nombre}}</h6>
                 <img *ngIf="!imagenTemp" [src]="usuario.img | imagen" class="w150">
@@ -81,7 +81,52 @@
                 <button (click)="canbiarImagen()" [disabled]="!imagenSubir" type="button" class="btn btn-success waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Actualizar foto</button>
                 <br>
             </div>
+
+
+        </div>
+        <div class="wrapper" *ngIf="_usuarioService.ImagenCargado">
+            <div id="preloader_4">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="row">
+
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Votos por genero</h4>
+
+                <canvas baseChart [datasets]="radarChartData" [labels]="radarChartLabels" [chartType]="radarChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+
+            </div>
         </div>
     </div>
+
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Votos por nota</h4>
+
+                <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+
+
+                <button (click)="randomizeType()" style="display: inline-block" class="btn">Toggle</button>
+
+            </div>
+        </div>
+    </div>
+
 
 </div>

@@ -9,9 +9,10 @@ export class VerificaTokenGuard implements CanActivate {
   constructor( public _usuarioService: UsuarioService ) {  }
 
   canActivate():  Promise<boolean> | boolean {
-    console.log( 'Token guard' );
+    // console.log( 'Token guard' );
 
     const token = this._usuarioService.token;
+
     const payload = JSON.parse( atob( token.split('.')[1] ) );
 
     const expirado = this.expirado( payload.exp );
@@ -21,7 +22,7 @@ export class VerificaTokenGuard implements CanActivate {
       return false;
     }
 
-    console.log( payload );
+    // console.log( payload );
 
     return this.verificaRenueva( payload.exp );
   }
@@ -49,8 +50,8 @@ export class VerificaTokenGuard implements CanActivate {
 
       ahora.setTime( ahora.getTime() + ( 1 * 60 * 60 * 1000 ));
 
-      console.log( tokenExp );
-      console.log( ahora );
+      // console.log( tokenExp );
+      // console.log( ahora );
 
       if ( tokenExp.getTime() > ahora.getTime() ) {
 

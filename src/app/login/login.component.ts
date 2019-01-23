@@ -7,7 +7,7 @@ import { element } from 'protractor';
 import swal from 'sweetalert2';
 import { NgZone } from '@angular/core';
 
-declare function init_plugins();
+ declare function init_plugins();
 declare const gapi: any;
 
 @Component({
@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   email: string;
   recuerdame = false;
+  entrar = false;
 
   auth2: any;
 
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    init_plugins();
+     init_plugins();
     this.googleInit();
 
   this.email = localStorage.getItem('email') || '';
@@ -61,7 +62,6 @@ export class LoginComponent implements OnInit {
 
    // tslint:disable-next-line:no-shadowed-variable
    attachSignin( element ) {
-
     this.auth2.attachClickHandler(element, {}, googleUser => {
 
       // let profile = googleUser.getBasicProfile();
@@ -69,26 +69,36 @@ export class LoginComponent implements OnInit {
       const token = googleUser.getAuthResponse().id_token;
 
       this.zone.run( () => {
-        this._usuarioService.loginGoogle( token ).subscribe( isLogueado =>  this.router.navigate(['/dashboard']));
+        this.entrar = true;
+        this._usuarioService.loginGoogle( token ).subscribe( (isLogueado: any) => {
+          this.entrar = false;
+          this.router.navigate(['/dashboard']);
+          });
       });
+      this.entrar = false;
     });
 
    }
 
   ingresar( forma: NgForm ) {
-
+    this.entrar = true;
     if ( forma.invalid ) {
       swal({ type: 'error', title: 'Correo o contraseña incorrectos', text: 'Intentelo de nuevo' });
+      this.entrar = false;
       return; }
 
     const usuario = new Usuario(null, forma.value.email, forma.value.password );
 
     // tslint:disable-next-line:max-line-length
     this._usuarioService.login( usuario, forma.value.recuerdame ).subscribe(
-      correcto => { this.router.navigate(['/dashboard']); },
+      correcto => { this.router.navigate(['/dashboard']);
+      this.entrar = false;
+      },
       // tslint:disable-next-line:max-line-length
       err => { swal({ type: 'error', title: 'Correo o contraseña incorrectos', text: 'Intentelo de nuevo' });
-      console.log(err); }
+      console.log(err);
+      this.entrar = false;
+    }
     );
 
 

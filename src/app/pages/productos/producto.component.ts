@@ -92,7 +92,7 @@ export class ProductoComponent implements OnInit {
       return;
     }
 
-    console.log(f.value.precio);
+    console.log(f.value);
 
     f.value.precio = Number(f.value.precio);
     if ( isNaN(f.value.precio) ) {
@@ -133,7 +133,7 @@ export class ProductoComponent implements OnInit {
 
 
   cambiarFoto() {
-  this._modalUploadService.mostrarModal( 'productos', this.producto._id );
+  this._modalUploadService.mostrarModal( 'productos', this.producto._id, this.producto );
   }
 
 }

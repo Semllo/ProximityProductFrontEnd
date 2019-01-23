@@ -8,9 +8,6 @@ export class LoginGuardGuard implements CanActivate {
   constructor( public _usuariosService: UsuarioService,
   public router: Router ) {
 
-
-
-
   }
 
   canActivate(): boolean {
@@ -19,7 +16,7 @@ export class LoginGuardGuard implements CanActivate {
         // console.log( 'PASO EL GUARD' );
         return true;
     } else {
-      console.log( 'Bloqueo GUARD' );
+      // console.log( 'Bloqueo GUARD' );
       this.router.navigate(['/login']);
       return false;
     }

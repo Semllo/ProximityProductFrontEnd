@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-6">
+    <!--<div class="col-6">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Usuarios</h4>
@@ -19,25 +19,30 @@
 
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <div class="col-6">
+    <div class="col-12">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Productos</h4>
 
                 <table class="table table-hover" *ngIf=" productos.length > 0">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                        </tr>
+                    </thead>
                     <tbody>
-                        <tr *ngFor="let producto of productos" [routerLink]="['/productos']">
+                        <tr class="pointer" *ngFor="let producto of productos" [routerLink]="['/productoUser/', producto._id]">
                             <td><img [src]="producto.img | imagen" class="img-50 img-circle"></td>
                             <td>{{producto.nombre}}</td>
-
                         </tr>
                     </tbody>
                 </table>
 
                 <div class="alert alert-info" *ngIf=" productos.length === 0 ">
-                    No hay registros
+                    No hay ningún resultado para la palabra introducida
                 </div>
 
             </div>

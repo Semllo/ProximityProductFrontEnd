@@ -46,6 +46,18 @@ export class ProductoService {
 
     }
 
+    cargarProductosPorCat( id, desde: number = 0, hasta: number = 5 ) {
+
+      const url = URL_SERVICIOS + '/producto/subcat/' + id + '?desde=' + desde + '&hasta=' + hasta;
+      // console.log(url);
+      return this.http.get( url ).map( (resp: any) => {
+
+        return resp.productos;
+
+      });
+
+      }
+
     cargarProductosPop( desde: string = '' ) {
 
       const url = URL_SERVICIOS + '/indicadores/desc/popularidad' + desde;

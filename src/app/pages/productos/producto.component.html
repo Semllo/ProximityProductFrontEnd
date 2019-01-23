@@ -16,7 +16,8 @@
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Descripción</label>
-                            <textarea [ngModel]="producto.descripcion" name="descripcion" placeholder="Inserte una desciprción" name="descripcion" type="text" class="form-control rounded-0" rows="10"></textarea>
+                            <!-- <textarea [ngModel]="producto.descripcion" placeholder="Inserte una descripción" name="descripcion" type="text" class="form-control rounded-0" rows="10"></textarea> -->
+                            <ngx-wig name="descripcion" [ngModel]="producto.descripcion"></ngx-wig>
                         </div>
 
                         <div class="form-group">
@@ -37,5 +38,14 @@
         <div class="card card-body">
             <h4> Fotografia </h4>
             <img (click)="cambiarFoto()" [src]="producto.img | imagen:'producto'" class="img-fluid pointer">
+        </div>
+        <div class="wrapper" *ngIf="_modalUploadService.ImagenCargando">
+            <div id="preloader_4">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </div>

@@ -30,6 +30,13 @@
                         <button class="btn btn-info btn-lg btn-block text-uppercase btn-rounded" type="submit"> Iniciar sesión </button>
                     </div>
                 </div>
+                <div id="preloader_4" class="col-xs-12" *ngIf="entrar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
                         <div class="social">
@@ -41,8 +48,11 @@
                     <div class="col-sm-12 text-center">
                         No tiene cuenta? <a routerLink="/register" class="text-primary m-l-5"><b>Crear cuenta</b></a>
                     </div>
+
                 </div>
+
             </form>
+
             <form class="form-horizontal" id="recoverform" action="index.html">
                 <div class="form-group ">
                     <div class="col-xs-12">

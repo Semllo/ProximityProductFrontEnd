@@ -12,7 +12,7 @@ declare function init_plugins();
 @Component({
   selector: 'app-registre',
   templateUrl: './registre.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./registre.component.css']
 })
 export class RegistreComponent implements OnInit {
 

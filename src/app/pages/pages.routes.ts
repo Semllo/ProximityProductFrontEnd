@@ -18,10 +18,11 @@ import { CategoriasComponent } from './categorias/categorias.component';
 import { ProductosUserComponent } from './productos-user/productos-user/productos-user.component';
 import { RecomendacionesComponent } from './recomendaciones/recomendaciones/recomendaciones.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { VerporcatComponent } from './verporcat/verporcat/verporcat.component';
 
 
 const pagesRoutes: Routes = [
-            { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard' }, canActivate: [ VerificaTokenGuard ]  },
+            { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard' } },
             { path: 'progress', component: PogressComponent , data: { titulo: 'Progres' }  },
             { path: 'graficas1', component: Graficas1Component , data: { titulo: 'Graficas' }  },
             { path: 'promesas', component: PromesasComponent , data: { titulo: 'Promesas' }  },
@@ -32,6 +33,7 @@ const pagesRoutes: Routes = [
             { path: 'productoUser/:id', component: ProductosUserComponent , data: { titulo: 'Productos' }  },
             { path: 'recomendaciones', component: RecomendacionesComponent , data: { titulo: 'Recomendaciones' }  },
             { path: 'busqueda/:termino', component: BusquedaComponent , data: { titulo: 'Buscador' }  },
+            { path: 'verporcat/:id', component: VerporcatComponent , data: { titulo: 'Ver por categoria' }  },
 
             // Mantenimientos
             { path: 'usuarios', component: UsuariosComponent, canActivate: [AdminGuard], data: { titulo: 'Mantenimiento de usuarios' }  },

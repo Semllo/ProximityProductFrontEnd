@@ -38,3 +38,93 @@
 .bodyfooter {
     background-color: rgba(255, 255, 255, 0.3);
 }
+
+.pointer {
+    cursor: pointer;
+}
+
+
+/* Pre-loader */
+
+#preloader_4 {
+    position: relative;
+}
+
+#preloader_4 span {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #83A3B2;
+    opacity: 0.5;
+    border-radius: 20px;
+    animation: preloader_4 1s infinite ease-in-out;
+}
+
+#preloader_4 span:nth-child(2) {
+    left: 20px;
+    animation-delay: .2s;
+}
+
+#preloader_4 span:nth-child(3) {
+    left: 40px;
+    animation-delay: .4s;
+}
+
+#preloader_4 span:nth-child(4) {
+    left: 60px;
+    animation-delay: .6s;
+}
+
+#preloader_4 span:nth-child(5) {
+    left: 80px;
+    animation-delay: .8s;
+}
+
+@keyframes preloader_4 {
+    0% {
+        opacity: 0.3;
+        transform: translateY(0px);
+        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-10px);
+        background: #2d2f30;
+        box-shadow: 0px 20px 3px rgba(0, 0, 0, 0.05);
+    }
+    100% {
+        opacity: 0.3;
+        transform: translateY(0px);
+        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+    }
+}
+
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background: #292e36;
+    border-radius: 10px;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #292e36;
+}

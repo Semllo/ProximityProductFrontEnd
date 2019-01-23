@@ -7,10 +7,12 @@ import { resolve } from 'dns';
 
 @Component({
   selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styles: []
+  templateUrl: './profile.component.html'
 })
+
+
 export class ProfileComponent implements OnInit {
+
 
   usuario: Usuario;
   fecha: string;
@@ -22,6 +24,23 @@ export class ProfileComponent implements OnInit {
   imagenSubir: File;
   imagenTemp: string;
 
+
+  // Radar
+  public radarChartLabels = [];  // Categorias
+
+  public radarChartData = [
+    {data: [], label: 'Votos'},
+    {data: [], label: 'Notas'},
+    {data: [], label: 'Mis gustos'}
+  ];
+  public radarChartType = 'radar';
+
+
+// Pie
+public pieChartType = 'pie';
+ // tslint:disable-next-line:max-line-length
+ public pieChartLabels: string[] = ['Muy malo(1)', 'Malo(2)', 'Flojo(3)', 'Regular(4)', 'Pasable(5)', 'Interesante(6)', 'Bueno(7)', 'Notable(8)', 'Muy bueno(9)', 'Excelente(10)'];     // Notas
+ public pieChartData: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];                                          // Numero de votos por nota
 
 
   constructor( public _usuarioService: UsuarioService) {
@@ -41,11 +60,104 @@ export class ProfileComponent implements OnInit {
       this.genero = 'Masculino';
     }
 
+
+    if (!Array.prototype.unique) {
+      Array.prototype.unique = function(a) {
+        return function() { return this.filter(a); }; }(function(a, b, c) { return c.indexOf(a, b + 1) < 0;
+      });
+    }
+
+
+    this._usuarioService.mostrarUnUsuario().subscribe( (resp: any) => {
+      console.log( resp );
+
+      this.radarChartLabels = [''];
+
+      // tslint:disable-next-line:prefer-const
+      let medias = [];
+      // tslint:disable-next-line:prefer-const
+      let acumulado = [];
+      // tslint:disable-next-line:prefer-const
+      let ocurrencias = [];
+
+
+      this.pieChartData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+      for ( let i = 0; i < resp.usuarios.criticas.length; i++ ) {
+        this.pieChartData[resp.usuarios.criticas[i].nota - 1] = this.pieChartData[resp.usuarios.criticas[i].nota - 1] + 1;
+
+          this.radarChartLabels[i] = resp.usuarios.criticas[i].producto.subcategoria.nombre;
+
+      }
+
+      this.radarChartLabels = this.radarChartLabels.unique();
+
+      for ( let j = 0; j < this.radarChartLabels.length; j++ ) {
+              acumulado[j] = 0;
+              ocurrencias[j] = 0;
+      }
+
+      for ( let i = 0; i < resp.usuarios.criticas.length; i++ ) {
+        for ( let j = 0; j < this.radarChartLabels.length; j++ ) {
+
+        if ( this.radarChartLabels[j] === resp.usuarios.criticas[i].producto.subcategoria.nombre ) {
+              acumulado[j] = acumulado[j] + resp.usuarios.criticas[i].nota;
+              ocurrencias[j] = ocurrencias[j] + 1;
+
+          }
+        }
+      }
+
+      for ( let j = 0; j < this.radarChartLabels.length; j++ ) {
+         medias[j] = acumulado[j] / ocurrencias[j];
+         this.radarChartData[0].data[j] = ocurrencias[j];
+         this.radarChartData[1].data[j] = medias[j];
+      }
+
+      let max = 0;
+      for ( let j = 0; j < ocurrencias.length; j++ ) {
+        if ( ocurrencias[j] > max ) {
+            max = ocurrencias[j];
+        }
+      }
+
+      for ( let j = 0; j < this.radarChartLabels.length; j++ ) {
+        medias[j] = acumulado[j] / ocurrencias[j];
+        this.radarChartData[0].data[j] = (ocurrencias[j] * 100) / max;
+        this.radarChartData[1].data[j] = medias[j] * 10;
+        this.radarChartData[2].data[j] = (this.radarChartData[0].data[j] + this.radarChartData[1].data[j]) / 2;
+     }
+
+     // Calcular % en ocurrencies y convinat entre els dos
+
+      console.log( this.radarChartData );
+
+      console.log( this.radarChartLabels );
+    });
+
+
    }
 
   ngOnInit() {
 
   }
+
+
+
+
+  public randomizeType(): void {
+    // this.lineChartType = this.lineChartType === 'line' ? 'bar' : 'line';
+    this.pieChartType = this.pieChartType === 'doughnut' ? 'pie' : 'doughnut';
+  }
+
+  public chartClicked(e: any): void {
+    console.log(e);
+  }
+
+  public chartHovered(e: any): void {
+    console.log(e);
+  }
+
+
 
   guardar( usuario: any ) {
 
@@ -119,8 +231,18 @@ export class ProfileComponent implements OnInit {
 
   canbiarImagen() {
 
-    this._usuarioService.cambiarImagen( this.imagenSubir, this.usuario._id );
+
+  this._usuarioService.cambiarImagen( this.imagenSubir, this.usuario._id );
+
+
 
   }
 
+}
+
+
+declare global {
+  interface Array<T> {
+      unique(): Array<T>;
+  }
 }

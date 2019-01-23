@@ -6,6 +6,8 @@ export class ModalUploadService {
 
   public tipo: string;
   public id: string;
+  public producto: any;
+  public ImagenCargando = false;
 
   public oculto = 'oculto';
 
@@ -19,12 +21,23 @@ export class ModalUploadService {
       this.oculto = 'oculto';
       this.tipo = null;
       this.id = null;
+      this.producto = null;
+      this.ImagenCargando = false;
   }
 
-  mostrarModal( tipo: string, id: string ) {
+  mostrarModal( tipo: string, id: string, producto?: any ) {
+    if (producto) {
+      this.producto = producto;
+    }
       this.oculto = '';
-      this.tipo = id;
-      this.id = tipo;
+      this.tipo = tipo;
+      this.id = id;
   }
 
+  limpiarModal() {
+    this.tipo = null;
+      this.id = null;
+      this.producto = null;
+      this.ImagenCargando = false;
+  }
 }

@@ -30,6 +30,7 @@ export class UsuariosComponent implements OnInit {
 
   mostrarModal( id: string ) {
 
+    this._modalUploadService.limpiarModal();
     this._modalUploadService.mostrarModal( 'usuarios', id );
 
   }

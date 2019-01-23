@@ -16,11 +16,33 @@
 
                     </ul>
                 </li>
+
                 <li class="nav-devider"></li>
                 <li class="nav-small-cap"></li>
+                <!-- Categorias -->
+                <li class="">
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i [class]="_sidebar.menuCat.icono"></i><span class="hide-menu"> {{ _sidebar.menuCat.titulo }} </span></a>
+                    <ul aria-expanded="false" class="collapse" style="height: 0px;">
+                        <li *ngFor="let menu of _sidebar.menuCat.submenu" class="">
 
+                            <a class="has-arrow" aria-expanded="false" href="#"> {{ menu.nombre }} <span class="label label-rouded label-themecolor pull-right">{{  menu.subcat.length }}</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse" style="height: 0px;">
+                                <li *ngFor="let submenu of menu.subcat">
+                                    <a [routerLink]=" [ submenu.id ] "> {{ submenu.nombre }} </a>
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                    </ul>
+
+                </li>
+
+                <!-- Mantenimiento -->
                 <li *ngFor="let menu of _sidebar.menu">
-                    <a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i [class]="menu.icono"></i><span class="hide-menu"> {{ menu.titulo }} <span class="label label-rouded label-themecolor pull-right">{{ menu.submenu.length }}</span></span></a>
+                    <a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i [class]="menu.icono"></i><span class="hide-menu"> {{ menu.titulo }} </span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li *ngFor="let submenu of menu.submenu">
                             <a routerLinkActive="active" [routerLink]=" [ submenu.url ] "><i [class]="submenu.icono"></i> {{ submenu.titulo }} </a>

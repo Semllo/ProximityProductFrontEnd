@@ -1,9 +1,96 @@
 <div class="row">
 
+    <div class="col-md-8 row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body row">
+
+                    <div class="col-sm-12">
+                        <h2>{{producto.nombre}}</h2>
+                    </div>
+
+
+
+                    <div class="col-sm-12" *ngIf='producto.notamedia'>
+                        <div class="stars-outer">
+                            <div class="stars-inner" [ngStyle]="{'width':getColor(producto.notamedia)}"></div>
+                        </div> {{producto.notamedia}} ( {{producto.popularidad}} )</div>
+                    <hr noshade="noshade" size="2" width="100%" />
+
+
+                    <div class="col-sm-12" [innerHTML]="producto.descripcion">
+                    </div>
+
+                    <hr noshade="noshade" size="2" width="100%" />
+
+                    <div class="col-sm-12">
+                        Mi nota:
+                        <div class="form-group row">
+                            <select class="form-control col-sm-9" [(ngModel)]="critica.nota">
+                                    <option [ngValue]="nota" *ngFor="let nota of notas">{{nota}}</option>
+                                </select>
+                            <button (click)="guardarCri(critica)" type="button" class="btn waves-effect waves-light btn-primary col-sm-3"> 
+                                        <i class="fa fa-save"></i>
+                                          Guardar critica
+                                    </button>
+                            <hr noshade="noshade" size="2" width="100%" />
+                            <input [(ngModel)]="critica.nombre" name="nombre" type="text" class="form-control col-sm-12" placeholder="Nombre de la crítica">
+                            <ngx-wig name="descripcion" [(ngModel)]="critica.descripcion" placeholder="Escriba su criticas" class="form-control col-sm-12"></ngx-wig>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <hr noshade="noshade" size="2" width="100%" />
+
+                </div>
+
+            </div>
+            <div class="col-md-12">
+
+                <h3 *ngIf="criticas.length">Valoraciones de los usuarios</h3>
+
+
+                <div class="row" *ngFor="let criticaO of criticas">
+                    <div class="card col-md-12">
+                        <div class="card-body row">
+                            <div class="col-sm-8">
+                                {{ criticaO.user }}
+                            </div>
+
+                            <div class="col-sm-4">
+
+                                <div class="stars-outer">
+                                    <div class="stars-inner" [ngStyle]="{'width':getColor(criticaO.nota)}"></div>(<span>{{ criticaO.nota }}</span>)
+                                </div>
+                            </div>
+
+                            <div class="col-md-12" *ngIf="criticaO.nombre">
+                                <hr noshade="noshade" size="2" width="100%" />
+                                <h4><strong>{{criticaO.nombre}}</strong></h4>
+                            </div>
+
+                            <div class="col-md-12" *ngIf="criticaO.descripcion">
+
+
+                                <h5 [innerHTML]="criticaO.descripcion"></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
     <div class="col-lg-4">
 
         <div class="row">
-            <div class="col-12">
+            <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
 
@@ -15,83 +102,28 @@
         </div>
 
         <div class="row">
-            <div class="col-12">
+            <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-
-                        <pre>{{producto.descripcion}}</pre>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="col-md-8 row">
-
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body row">
-
-                    <div class="col-sm-12">{{producto.nombre}}</div>
-
-
-                    <div class="col-sm-12" *ngIf='producto.notamedia'>
-                        <div class="stars-outer">
-                            <div class="stars-inner" [ngStyle]="{'width':getColor(producto)}"></div>
-                        </div> {{producto.notamedia}} ( {{producto.popularidad}} )</div>
-                    <hr noshade="noshade" size="2" width="100%" />
-
-
-
-                    <div class="col-sm-6">
                         <div class="form-group">
                             <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="deseo">
-                                <option *ngIf="deseo == 'Sin listas de deseos'" [value]=""> Sin listas de deseos </option>
-                                <option [ngValue]="deseos"  *ngFor="let deseos of usuario.listasDeDeseos">{{deseos.nombre}}</option>
-                             </select>
+                    <option *ngIf="deseo == 'Sin listas de deseos'" [value]=""> Sin listas de deseos </option>
+                    <option [ngValue]="deseos"  *ngFor="let deseos of usuario.listasDeDeseos">{{deseos.nombre}}</option>
+                 </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="text-right">
+                                <button type="button" (click)="listaDeseos(deseo)" class="btn waves-effect waves-light btn-rounded btn-primary"> 
+                                        <i class="fa fa-plus"></i>
+                                         Añadir a mis deseos
+                                        </button>
+                            </div>
                         </div>
                     </div>
-
-
-                    <div class="col-sm-6">
-                        <div class="text-right">
-                            <button type="button" (click)="listaDeseos(deseo)" class="btn waves-effect waves-light btn-rounded btn-primary"> 
-                            <i class="fa fa-plus"></i>
-                             Añadir a mis deseos
-                            </button>
-                        </div>
-                    </div>
-                    <hr noshade="noshade" size="2" width="100%" />
-
-                    <div class="col-sm-12">
-                        Mi nota:
-                        <div class="form-group">
-                            <select class="form-control" [(ngModel)]="critica.nota">
-                                    <option [ngValue]="nota" *ngFor="let nota of notas">{{nota}}</option>
-                                </select>
-                        </div>
-                    </div>
-
-                    <div class="col-md-12">
-                        <input [(ngModel)]="critica.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre de la crítica">
-                        <textarea [(ngModel)]="critica.descripcion" placeholder="Escriba su criticas" name="descripcion" type="text" class="form-control rounded-0" id="exampleFormControlTextarea1" rows="10"></textarea>
-                        <button (click)="guardarCri(critica)" type="button" class="btn waves-effect waves-light btn-rounded btn-primary"> 
-                            <i class="fa fa-save"></i>
-                              Guardar critica
-                        </button>
-                    </div>
-                    <hr noshade="noshade" size="2" width="100%" />
-
-                    <div class="col-md-12">
-                        Opiniones destacadas
-                    </div>
-
                 </div>
             </div>
         </div>
 
     </div>
-
 
 </div>

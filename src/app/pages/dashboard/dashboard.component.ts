@@ -90,6 +90,7 @@ export class DashboardComponent implements OnInit {
   productospop = [];
   productostop = [];
   mostrar = 12;
+  cargando = true;
 
   constructor( public _usuarioService: ProductoService,
     public router: Router ) {
@@ -103,8 +104,11 @@ export class DashboardComponent implements OnInit {
           this.productos[i] = resp[i];
         // console.log(this.productos[i]);
           this.productos[i].notamedia = Math.round(this.productos[i].notamedia * 10) / 10;
-        } else { return; }
+        } else {
+          this.cargando = false;
+          return; }
       }
+      this.cargando = false;
     });
 
     this._usuarioService.cargarProductosPop().subscribe ( (resp: any) => {
@@ -115,9 +119,11 @@ export class DashboardComponent implements OnInit {
           this.productospop[i] = resp.productos[i];
         // console.log(this.productos[i]);
         this.productospop[i].notamedia = Math.round(this.productospop[i].notamedia * 10) / 10;
-        } else { return; }
+        } else {
+          this.cargando = false;
+          return; }
       }
-
+      this.cargando = false;
     });
 
     this._usuarioService.cargarProductosTop().subscribe ( (resp: any) => {
@@ -127,9 +133,11 @@ export class DashboardComponent implements OnInit {
           this.productostop[i] = resp.productos[i];
         // console.log(this.productos[i]);
         this.productostop[i].notamedia = Math.round(this.productostop[i].notamedia * 10) / 10;
-        } else { return; }
+        } else {
+          this.cargando = false;
+          return; }
       }
-
+      this.cargando = false;
     });
 
 
